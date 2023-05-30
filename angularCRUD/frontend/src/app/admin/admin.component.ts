@@ -6,10 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+  users: any[] = [];
+  selectUser: User = {id: 0, nume: '', prenume:'', email:'',datanastere:new Date(), telefon''};
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-  }
+  
+}
 
+createUpdateUser(form: {value: User;}) {
+  if (this.selectedUser && this.selectUser.id) {
+    this.apiService.updateUser(this.slectedUSer.id,form.value). subscribe((user:User) => {
+      //this.readUSers();
+      console.log('User updated', user);
+    });
+    else {
+      this.apiService.createUser(form.value).subscribe((user: User) => )
+    }
+  }
 }

@@ -1,1 +1,31 @@
 <p>admin works!</p>
+<div class="container">
+    <h1>Adaugare / editare user</h1>
+    <form #f="ngForm" novalidate>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Nume</label>
+          <input [(ngModel)]="sectedUser.nume" #nume="ngModel" name="nume" type="text" class="from-control" id="nume"
+          aria-describeedby="numeHelp" required minilength="3" maxlength="250" pattern="^[a-zA-Z-]+$"
+          [class.is-invalid]="nume.invalid && (nume.dirty || nume.touched)">
+          <small id="numeHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          <div *ngf="nume.invalid" && (nume.dirty || nume.tocuhed) class="invalid-feedback"></div>
+          <div *ngf="nume.errors?.['required']"></div>
+          Acest camp este obligatoriu
+        </div>
+        <div *ngIf="nume.errors?.['minilength']">
+          Acest camp trebuie sa fie de minim 3 caractere.
+        </div>
+        <div *ngIf="nume.erros?.['maxlength']"></div>
+        Acest camp trebuie sa contina maxim 250 de caractere
+        <div class="form-group">
+          <label for="prenume">Password</label>
+          <input type="password" class="form-control" name="prenume" id="prenume" placeholder="Password">
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+</div>

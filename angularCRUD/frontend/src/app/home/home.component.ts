@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  users:user[] = [];
 
-  constructor() { }
+  constructor(private apiService:ApiService) { }
 
   ngOnInit(): void {
+    this.apiService.readUsers().subscribe((users:User[])=>{
+      this.users = users['users'];
+    })
   }
 
 }
